@@ -1,112 +1,169 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import "./App.css";
 
 const books = [
   {
     title: "Grid Systems",
+    author: "Josef Müller-Brockmann",
     color: "#A6543D",
-    width: 70,
-    height: 430,
     textColor: "#F4EEE8",
   },
   {
     title: "Kindle Entrepreneur",
+    author: "Unknown",
     color: "#D8D8D8",
-    width: 75,
-    height: 430,
     textColor: "#17181D",
   },
   {
     title: "Steve Jobs",
     author: "Walter Isaacson",
     color: "#25262A",
-    width: 310,
-    height: 430,
     textColor: "#EAEAEA",
-    featured: true,
   },
   {
     title: "Apple Book",
+    author: "Apple",
     color: "#D9D9D9",
-    width: 75,
-    height: 430,
     textColor: "#17181D",
   },
   {
     title: "Principles of UX",
+    author: "Design Collection",
     color: "#202024",
-    width: 75,
-    height: 430,
     textColor: "#EAEAEA",
   },
   {
     title: "How To",
+    author: "Michael Bierut",
     color: "#D9D9D9",
-    width: 75,
-    height: 430,
     textColor: "#17181D",
   },
 ];
 
-function App() {
-  const [position, setPosition] = useState(0);
-  const handleWheel = (event) => {
-    event.preventDefault();
+const SPINE_WIDTH = 75;
+const OPEN_BOOK_WIDTH = 310;
+const BOOK_GAP = 28;
 
+function App() {
+  const [activeBook, setActiveBook] = useState(2);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  const handleWheel = (event) => {
     if (event.deltaY > 0) {
-      setPosition((currentPosition) => currentPosition - 180);
-    } else {
-      setPosition((currentPosition) => currentPosition + 180);
+      setActiveBook((currentBook) =>
+        Math.min(currentBook + 1, books.length - 1)
+      );
+    } else if (event.deltaY < 0) {
+      setActiveBook((currentBook) =>
+        Math.max(currentBook - 1, 0)
+      );
     }
   };
+
+  const getShelfPosition = () => {
+    const spaceBeforeActive =
+      activeBook * (SPINE_WIDTH + BOOK_GAP);
+
+    const activeBookCenter =
+      spaceBeforeActive + OPEN_BOOK_WIDTH / 2;
+
+    const screenCenter = windowWidth / 2;
+
+    return screenCenter - activeBookCenter;
+  };
+
   return (
     <main className="library">
-      <section className="library-header">
-        <div className="header-line"></div>
+      <header className="library-header">
+        <div className="header-line" />
         <h1>FAVOURITE BOOKS</h1>
-        <div className="header-line"></div>
-      </section>
+        <div className="header-line" />
+      </header>
 
-      <section className="bookshelf-window" onWheel={handleWheel}>
-      <motion.div
-        className="bookshelf"
-        animate={{ x: position }}
-        transition={{
-          type: "spring",
-          stiffness: 120,
-          damping: 20,
-        }}
+      <section
+        className="bookshelf-window"
+        onWheel={handleWheel}
       >
-        {books.map((book, index) => (
-          <article
-            className={`book ${book.featured ? "featured" : ""}`}
-            style={{
-              width: `${book.width}px`,
-              height: `${book.height}px`,
-              backgroundColor: book.color,
-              color: book.textColor,
-            }}
-            key={index}
-          >
-            
-            {book.featured ? (
-              <div className="featured-content">
-                <span className="bestseller">A PERSONAL FAVOURITE</span>
+        <motion.div
+          className="bookshelf"
+          animate={{
+            x: getShelfPosition(),
+          }}
+          transition={{
+            type: "spring",
+            stiffness: 120,
+            damping: 20,
+          }}
+        >
+          {books.map((book, index) => {
+            const isActive = index === activeBook;
 
-                <h2>{book.title}</h2>
+            return (
+              <motion.article
+                key={book.title}
+                className={`book ${isActive ? "active" : ""}`}
+                onClick={() => setActiveBook(index)}
+                animate={{
+                  width: isActive
+                    ? OPEN_BOOK_WIDTH
+                    : SPINE_WIDTH,
+                  y: isActive ? -20 : 0,
+                  opacity: isActive ? 1 : 0.7,
+                }}
+                transition={{
+                  type: "spring",
+                  stiffness: 180,
+                  damping: 22,
+                }}
+                style={{
+                  height: 430,
+                  backgroundColor: book.color,
+                  color: book.textColor,
+                }}
+              >
+                {isActive ? (
+                  <div className="book-cover">
+                    <span className="book-label">
+                      THE READING ROOM
+                    </span>
 
-                <p>{book.author}</p>
+                    <div className="book-info">
+                      <h2>{book.title}</h2>
+                      <p>{book.author}</p>
+                    </div>
 
-                <span className="library-edition">THE READING ROOM</span>
-              </div>
-            ) : (
-              <h2 className="spine-title">{book.title}</h2>
-            )}
-          </article>
-        ))}            
+                    <div className="book-footer">
+                      <span>PERSONAL EDITION</span>
+                      <span>2026</span>
+                    </div>
+                  </div>
+                ) : (
+                  <h2 className="spine-title">
+                    {book.title}
+                  </h2>
+                )}
+              </motion.article>
+            );
+          })}
         </motion.div>
       </section>
+
+      <p className="scroll-hint">
+        SCROLL TO EXPLORE
+      </p>
     </main>
   );
 }

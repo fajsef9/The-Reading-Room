@@ -9,26 +9,28 @@ body {
   background: #17181d;
   color: #e8e6e1;
   font-family: "DM Mono", monospace;
+  overflow-x: hidden;
 }
 
 .library {
+  width: 100%;
   min-height: 100vh;
+  padding-top: 10vh;
   overflow: hidden;
-  padding-top: 11vh;
 }
 
 .library-header {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 32px;
-  margin-bottom: 65px;
+  gap: 28px;
+  margin-bottom: 70px;
 }
 
 .library-header h1 {
   margin: 0;
   font-family: "Playfair Display", serif;
-  font-size: clamp(2rem, 3vw, 3.5rem);
+  font-size: clamp(2rem, 3vw, 3.4rem);
   font-weight: 400;
   letter-spacing: -0.03em;
 }
@@ -36,113 +38,132 @@ body {
 .header-line {
   width: 100px;
   height: 1px;
-  background: #6f7074;
-}
-
-.bookshelf {
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  gap: 32px;
-  min-width: max-content;
-}
-
-.book {
-  position: relative;
-  flex-shrink: 0;
-  cursor: pointer;
-  overflow: hidden;
-  box-shadow: 8px 0 20px rgba(0, 0, 0, 0.18);
-  transition:
-    transform 0.35s ease,
-    filter 0.35s ease;
-}
-
-.book:not(.featured) {
-  writing-mode: vertical-rl;
-  text-orientation: mixed;
-}
-
-.book:hover {
-  transform: translateY(-12px);
-}
-
-.spine-title {
-  margin: 0;
-  padding-top: 28px;
-  font-size: 1.35rem;
-  font-weight: 500;
-  line-height: 1;
-}
-
-.featured {
-  display: flex;
-  align-items: center;
-  padding: 45px;
-  background:
-    radial-gradient(
-      circle at 25% 25%,
-      rgba(255, 255, 255, 0.06),
-      transparent 35%
-    ),
-    #222328;
-}
-
-.featured::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  opacity: 0.22;
-  background-image:
-    radial-gradient(rgba(255, 255, 255, 0.25) 1px, transparent 1px);
-  background-size: 4px 4px;
-  pointer-events: none;
-}
-
-.featured-content {
-  position: relative;
-  z-index: 1;
-}
-
-.bestseller {
-  font-size: 0.65rem;
-  letter-spacing: 0.08em;
-  opacity: 0.7;
-}
-
-.featured h2 {
-  margin: 40px 0 12px;
-  font-family: "Playfair Display", serif;
-  font-size: 3rem;
-  font-weight: 400;
-  line-height: 1;
-}
-
-.featured p {
-  margin: 0;
-  font-size: 0.8rem;
-  opacity: 0.7;
-}
-
-.library-edition {
-  position: absolute;
-  bottom: -125px;
-  left: 0;
-  font-size: 0.6rem;
-  letter-spacing: 0.12em;
-  opacity: 0.55;
+  background: rgba(232, 230, 225, 0.3);
 }
 
 .bookshelf-window {
   width: 100%;
   overflow: hidden;
-  padding: 20px 0 40px;
+  padding: 45px 0 60px;
+  cursor: grab;
 }
 
 .bookshelf {
   display: flex;
   align-items: flex-end;
-  gap: 32px;
+  gap: 28px;
   width: max-content;
-  padding: 0 calc(50vw - 155px);
+}
+
+.book {
+  position: relative;
+  flex-shrink: 0;
+  height: 430px;
+  overflow: hidden;
+  cursor: pointer;
+  user-select: none;
+  box-shadow: 10px 10px 35px rgba(0, 0, 0, 0.25);
+}
+
+.book-cover {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 310px;
+  height: 430px;
+  padding: 38px 35px;
+}
+
+.book-cover::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.12;
+  background-image:
+    radial-gradient(
+      rgba(255, 255, 255, 0.5) 1px,
+      transparent 1px
+    );
+  background-size: 4px 4px;
+}
+
+.book-label {
+  position: relative;
+  z-index: 1;
+  font-size: 0.62rem;
+  letter-spacing: 0.15em;
+  opacity: 0.65;
+}
+
+.book-info {
+  position: relative;
+  z-index: 1;
+}
+
+.book-info h2 {
+  margin: 0 0 15px;
+  font-family: "Playfair Display", serif;
+  font-size: 3rem;
+  font-weight: 400;
+  line-height: 0.95;
+}
+
+.book-info p {
+  margin: 0;
+  font-size: 0.75rem;
+  opacity: 0.65;
+}
+
+.book-footer {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.58rem;
+  letter-spacing: 0.1em;
+  opacity: 0.55;
+}
+
+.spine-title {
+  margin: 0;
+  padding-top: 28px;
+  font-size: 1.15rem;
+  font-weight: 500;
+  line-height: 1;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  white-space: nowrap;
+}
+
+.scroll-hint {
+  margin: 5px 0 0;
+  text-align: center;
+  font-size: 0.65rem;
+  letter-spacing: 0.18em;
+  opacity: 0.4;
+}
+
+@media (max-width: 700px) {
+  .library-header {
+    gap: 15px;
+    margin-bottom: 40px;
+  }
+
+  .header-line {
+    width: 40px;
+  }
+
+  .book {
+    height: 360px;
+  }
+
+  .book-cover {
+    height: 360px;
+  }
+
+  .book-info h2 {
+    font-size: 2.4rem;
+  }
 }
