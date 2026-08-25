@@ -1,3 +1,5 @@
+import { useState } from "react";
+import { motion } from "framer-motion";
 import "./App.css";
 
 const books = [
@@ -48,6 +50,16 @@ const books = [
 ];
 
 function App() {
+  const [position, setPosition] = useState(0);
+  const handleWheel = (event) => {
+    event.preventDefault();
+
+    if (event.deltaY > 0) {
+      setPosition((currentPosition) => currentPosition - 180);
+    } else {
+      setPosition((currentPosition) => currentPosition + 180);
+    }
+  };
   return (
     <main className="library">
       <section className="library-header">
@@ -56,7 +68,16 @@ function App() {
         <div className="header-line"></div>
       </section>
 
-      <section className="bookshelf">
+      <section className="bookshelf-window" onWheel={handleWheel}>
+      <motion.div
+        className="bookshelf"
+        animate={{ x: position }}
+        transition={{
+          type: "spring",
+          stiffness: 120,
+          damping: 20,
+        }}
+      >
         {books.map((book, index) => (
           <article
             className={`book ${book.featured ? "featured" : ""}`}
@@ -68,6 +89,7 @@ function App() {
             }}
             key={index}
           >
+            
             {book.featured ? (
               <div className="featured-content">
                 <span className="bestseller">A PERSONAL FAVOURITE</span>
@@ -82,7 +104,8 @@ function App() {
               <h2 className="spine-title">{book.title}</h2>
             )}
           </article>
-        ))}
+        ))}            
+        </motion.div>
       </section>
     </main>
   );

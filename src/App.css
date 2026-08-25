@@ -132,3 +132,17 @@ body {
   letter-spacing: 0.12em;
   opacity: 0.55;
 }
+
+.bookshelf-window {
+  width: 100%;
+  overflow: hidden;
+  padding: 20px 0 40px;
+}
+
+.bookshelf {
+  display: flex;
+  align-items: flex-end;
+  gap: 32px;
+  width: max-content;
+  padding: 0 calc(50vw - 155px);
+}
