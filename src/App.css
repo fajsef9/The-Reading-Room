@@ -144,6 +144,84 @@ body {
   letter-spacing: 0.18em;
   opacity: 0.4;
 }
+.book-details {
+  min-height: 100vh;
+  padding: 60px 8vw;
+}
+
+.book-details button {
+  border: none;
+  background: none;
+  color: inherit;
+  font-family: "DM Mono", monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+}
+
+.details-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 100px;
+  align-items: center;
+  max-width: 1100px;
+  margin: 80px auto 0;
+}
+
+.details-cover {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 310px;
+  height: 430px;
+  padding: 40px;
+  background: #25262a;
+  box-shadow: 20px 20px 50px rgba(0, 0, 0, 0.3);
+}
+
+.details-cover h1 {
+  font-family: "Playfair Display", serif;
+  font-size: 3rem;
+  font-weight: 400;
+  line-height: 0.95;
+}
+
+.details-cover p {
+  font-size: 0.75rem;
+  opacity: 0.6;
+}
+
+.details-info {
+  max-width: 500px;
+}
+
+.details-label {
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  opacity: 0.5;
+}
+
+.details-info h1 {
+  margin: 10px 0;
+  font-family: "Playfair Display", serif;
+  font-size: 4rem;
+  font-weight: 400;
+}
+
+.details-info > p {
+  opacity: 0.6;
+}
+
+.rating {
+  margin: 40px 0;
+  font-size: 1.2rem;
+  letter-spacing: 0.2em;
+}
+
+.review {
+  max-width: 450px;
+  line-height: 1.8;
+}
 
 @media (max-width: 700px) {
   .library-header {

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import "./App.css";
 import Book from "./components/Book";
+import BookDetails from "./components/BookDetails";
 
 const books = [
   {
@@ -48,6 +49,7 @@ const BOOK_GAP = 28;
 
 function App() {
   const [activeBook, setActiveBook] = useState(2);
+  const [view, setView] = useState("library");
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   useEffect(() => {
@@ -88,45 +90,60 @@ function App() {
 
   return (
     <main className="library">
-      <header className="library-header">
-        <div className="header-line" />
+      {view === "book" ? (
+        <BookDetails
+          book={books[activeBook]}
+          onBack={() => setView("library")}
+        />
+      ) : (
+        <>
+          <header className="library-header">
+            <div className="header-line" />
 
-        <h1>FAVOURITE BOOKS</h1>
+            <h1>FAVOURITE BOOKS</h1>
 
-        <div className="header-line" />
-      </header>
+            <div className="header-line" />
+          </header>
 
-      <section
-        className="bookshelf-window"
-        onWheel={handleWheel}
-      >
-        <motion.div
-          className="bookshelf"
-          animate={{
-            x: getShelfPosition(),
-          }}
-          transition={{
-            type: "spring",
-            stiffness: 120,
-            damping: 20,
-          }}
-        >
-          {books.map((book, index) => (
-            <Book
-              key={book.title}
-              book={book}
-              isActive={index === activeBook}
-              onSelect={() => setActiveBook(index)}
-              spineWidth={SPINE_WIDTH}
-              openWidth={OPEN_BOOK_WIDTH}
-            />
-          ))}
-        </motion.div>
-      </section>
+          <section
+            className="bookshelf-window"
+            onWheel={handleWheel}
+          >
+            <motion.div
+              className="bookshelf"
+              animate={{
+                x: getShelfPosition(),
+              }}
+              transition={{
+                type: "spring",
+                stiffness: 120,
+                damping: 20,
+              }}
+            >
+              {books.map((book, index) => (
+                <Book
+                  key={book.title}
+                  book={book}
+                  isActive={index === activeBook}
+                  onSelect={() => {
+                    if (index === activeBook) {
+                      setView("book");
+                    } else {
+                      setActiveBook(index);
+                    }
+                  }}
+                  spineWidth={SPINE_WIDTH}
+                  openWidth={OPEN_BOOK_WIDTH}
+                />
+              ))}
+            </motion.div>
+          </section>
 
-      <p className="scroll-hint">
-        SCROLL TO EXPLORE
-      </p>
+          <p className="scroll-hint">
+            SCROLL TO EXPLORE
+          </p>
+        </>
+      )}
     </main>
   );
 }
