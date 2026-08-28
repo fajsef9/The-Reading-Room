@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import "./App.css";
+import Book from "./components/Book";
 
 const books = [
   {
@@ -89,7 +90,9 @@ function App() {
     <main className="library">
       <header className="library-header">
         <div className="header-line" />
+
         <h1>FAVOURITE BOOKS</h1>
+
         <div className="header-line" />
       </header>
 
@@ -108,56 +111,16 @@ function App() {
             damping: 20,
           }}
         >
-          {books.map((book, index) => {
-            const isActive = index === activeBook;
-
-            return (
-              <motion.article
-                key={book.title}
-                className={`book ${isActive ? "active" : ""}`}
-                onClick={() => setActiveBook(index)}
-                animate={{
-                  width: isActive
-                    ? OPEN_BOOK_WIDTH
-                    : SPINE_WIDTH,
-                  y: isActive ? -20 : 0,
-                  opacity: isActive ? 1 : 0.7,
-                }}
-                transition={{
-                  type: "spring",
-                  stiffness: 180,
-                  damping: 22,
-                }}
-                style={{
-                  height: 430,
-                  backgroundColor: book.color,
-                  color: book.textColor,
-                }}
-              >
-                {isActive ? (
-                  <div className="book-cover">
-                    <span className="book-label">
-                      THE READING ROOM
-                    </span>
-
-                    <div className="book-info">
-                      <h2>{book.title}</h2>
-                      <p>{book.author}</p>
-                    </div>
-
-                    <div className="book-footer">
-                      <span>PERSONAL EDITION</span>
-                      <span>2026</span>
-                    </div>
-                  </div>
-                ) : (
-                  <h2 className="spine-title">
-                    {book.title}
-                  </h2>
-                )}
-              </motion.article>
-            );
-          })}
+          {books.map((book, index) => (
+            <Book
+              key={book.title}
+              book={book}
+              isActive={index === activeBook}
+              onSelect={() => setActiveBook(index)}
+              spineWidth={SPINE_WIDTH}
+              openWidth={OPEN_BOOK_WIDTH}
+            />
+          ))}
         </motion.div>
       </section>
 
