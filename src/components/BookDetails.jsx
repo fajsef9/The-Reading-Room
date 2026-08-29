@@ -2,41 +2,65 @@ import { motion } from "framer-motion";
 
 function BookDetails({ book, onBack }) {
   return (
-    <motion.section
+    <motion.div
       className="book-details"
-      initial={{ opacity: 0, y: 30 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -30 }}
-      transition={{ duration: 0.6 }}
+      initial={{
+        opacity: 0,
+        y: 30,
+      }}
+      animate={{
+        opacity: 1,
+        y: 0,
+      }}
+      transition={{
+        duration: 0.7,
+        ease: "easeOut",
+      }}
     >
       <button onClick={onBack}>
         ← BACK TO LIBRARY
       </button>
 
       <div className="details-content">
-        <div className="details-cover">
+        <div
+          className="details-cover"
+          style={{
+            backgroundColor: book.color,
+            color: book.textColor,
+          }}
+        >
+          <span className="details-label">
+            THE READING ROOM
+          </span>
+
           <h1>{book.title}</h1>
+
           <p>{book.author}</p>
         </div>
 
         <div className="details-info">
-          <p className="details-label">BOOK</p>
+          <span className="details-label">
+            PERSONAL COLLECTION
+          </span>
 
           <h1>{book.title}</h1>
 
-          <p>{book.author}</p>
+          <p>
+            A book from my personal reading collection.
+          </p>
 
           <div className="rating">
-            ★★★★★
+            ★ ★ ★ ★ ★
           </div>
 
           <p className="review">
-            This is where my review of the book
-            will eventually go.
+            This is where the book description, my thoughts,
+            favourite quotes, and other information about the
+            book will eventually go.
           </p>
         </div>
       </div>
-    </motion.section>
+    </motion.div>
   );
 }
 
