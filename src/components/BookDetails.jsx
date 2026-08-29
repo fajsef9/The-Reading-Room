@@ -22,6 +22,8 @@ function BookDetails({ book, onBack }) {
       </button>
 
       <div className="details-content">
+
+        {/* BOOK COVER */}
         <div
           className="details-cover"
           style={{
@@ -38,6 +40,7 @@ function BookDetails({ book, onBack }) {
           <p>{book.author}</p>
         </div>
 
+        {/* BOOK INFORMATION */}
         <div className="details-info">
           <span className="details-label">
             PERSONAL COLLECTION
@@ -59,6 +62,7 @@ function BookDetails({ book, onBack }) {
             book will eventually go.
           </p>
         </div>
+
       </div>
     </motion.div>
   );
