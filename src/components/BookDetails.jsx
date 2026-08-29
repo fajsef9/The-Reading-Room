@@ -23,21 +23,29 @@ function BookDetails({ book, onBack }) {
 
       <div className="details-content">
 
-        {/* BOOK COVER */}
-        <div
-          className="details-cover"
-          style={{
-            backgroundColor: book.color,
-            color: book.textColor,
-          }}
-        >
-          <span className="details-label">
-            THE READING ROOM
-          </span>
+        {/* BOOK MODEL */}
+        <div className="details-book">
 
-          <h1>{book.title}</h1>
+          {/* PAGES */}
+          <div className="details-pages"></div>
 
-          <p>{book.author}</p>
+          {/* COVER */}
+          <div
+            className="details-cover"
+            style={{
+              backgroundColor: book.color,
+              color: book.textColor,
+            }}
+          >
+            <span className="details-label">
+              THE READING ROOM
+            </span>
+
+            <h1>{book.title}</h1>
+
+            <p>{book.author}</p>
+          </div>
+
         </div>
 
         {/* BOOK INFORMATION */}
