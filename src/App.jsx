@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
+
 import "./App.css";
+
 import Book from "./components/Book";
 import BookDetails from "./components/BookDetails";
+import Opening from "./components/Opening";
 
 const books = [
   {
@@ -65,6 +68,10 @@ function App() {
   }, []);
 
   const handleWheel = (event) => {
+    if (view !== "library") {
+      return;
+    }
+
     if (event.deltaY > 0) {
       setActiveBook((currentBook) =>
         Math.min(currentBook + 1, books.length - 1)
@@ -90,60 +97,82 @@ function App() {
 
   return (
     <main className="library">
-      {view === "book" ? (
-        <BookDetails
-          book={books[activeBook]}
-          onBack={() => setView("library")}
-        />
-      ) : (
-        <>
-          <header className="library-header">
-            <div className="header-line" />
+      <AnimatePresence mode="sync">
 
-            <h1>FAVOURITE BOOKS</h1>
-
-            <div className="header-line" />
-          </header>
-
-          <section
-            className="bookshelf-window"
-            onWheel={handleWheel}
+        {view === "library" && (
+          <motion.div
+            key="library"
+            initial={{ opacity: 1 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.6 }}
           >
-            <motion.div
-              className="bookshelf"
-              animate={{
-                x: getShelfPosition(),
-              }}
-              transition={{
-                type: "spring",
-                stiffness: 120,
-                damping: 20,
-              }}
-            >
-              {books.map((book, index) => (
-                <Book
-                  key={book.title}
-                  book={book}
-                  isActive={index === activeBook}
-                  onSelect={() => {
-                    if (index === activeBook) {
-                      setView("book");
-                    } else {
-                      setActiveBook(index);
-                    }
-                  }}
-                  spineWidth={SPINE_WIDTH}
-                  openWidth={OPEN_BOOK_WIDTH}
-                />
-              ))}
-            </motion.div>
-          </section>
+            <header className="library-header">
+              <div className="header-line" />
 
-          <p className="scroll-hint">
-            SCROLL TO EXPLORE
-          </p>
-        </>
-      )}
+              <h1>FAVOURITE BOOKS</h1>
+
+              <div className="header-line" />
+            </header>
+
+            <section
+              className="bookshelf-window"
+              onWheel={handleWheel}
+            >
+              <motion.div
+                className="bookshelf"
+                animate={{
+                  x: getShelfPosition(),
+                }}
+                transition={{
+                  type: "spring",
+                  stiffness: 120,
+                  damping: 20,
+                }}
+              >
+                {books.map((book, index) => (
+                  <Book
+                    key={book.title}
+                    book={book}
+                    isActive={index === activeBook}
+                    view={view}
+                    onSelect={() => {
+                      if (index === activeBook) {
+                        setView("opening");
+                      } else {
+                        setActiveBook(index);
+                      }
+                    }}
+                    spineWidth={SPINE_WIDTH}
+                    openWidth={OPEN_BOOK_WIDTH}
+                  />
+                ))}
+              </motion.div>
+            </section>
+
+            <p className="scroll-hint">
+              SCROLL TO EXPLORE
+            </p>
+          </motion.div>
+        )}
+
+        {view === "opening" && (
+          <Opening
+            key="opening"
+            book={books[activeBook]}
+            onComplete={() => setView("book")}
+          />
+        )}
+
+        {view === "book" && (
+          <BookDetails
+            key="book"
+            book={books[activeBook]}
+            onBack={() => setView("library")}
+          />
+        )}
+
+      </AnimatePresence>
     </main>
   );
 }

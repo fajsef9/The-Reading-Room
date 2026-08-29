@@ -1,6 +1,14 @@
+import { motion } from "framer-motion";
+
 function BookDetails({ book, onBack }) {
   return (
-    <section className="book-details">
+    <motion.section
+      className="book-details"
+      initial={{ opacity: 0, y: 30 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -30 }}
+      transition={{ duration: 0.6 }}
+    >
       <button onClick={onBack}>
         ← BACK TO LIBRARY
       </button>
@@ -28,7 +36,7 @@ function BookDetails({ book, onBack }) {
           </p>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 }
 

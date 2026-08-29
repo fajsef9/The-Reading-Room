@@ -1,34 +1,42 @@
 import { motion } from "framer-motion";
 
 function Book({
-    book,
-    isActive,
-    onSelect,
-    spineWidth,
-    openWidth,
- }) {
+  book,
+  isActive,
+  view,
+  onSelect,
+  spineWidth,
+  openWidth,
+}) {
   return (
     <motion.article
-    className={`book ${isActive ? "active" : ""}`}
-    onClick={onSelect}
-    animate={{
+      className={`book ${isActive ? "active" : ""}`}
+      onClick={onSelect}
+      animate={{
         width: isActive ? openWidth : spineWidth,
         y: isActive ? -20 : 0,
-        opacity: isActive ? 1 : 0.7,
-    }}
-    transition={{
+        opacity:
+          view === "opening"
+            ? isActive
+              ? 1
+              : 0
+            : isActive
+              ? 1
+              : 0.7,
+      }}
+      transition={{
         type: "spring",
         stiffness: 180,
-        damping : 22,
-    }}
-    style={{
-        height:  430,
+        damping: 22,
+      }}
+      style={{
+        height: 430,
         backgroundColor: book.color,
         color: book.textColor,
-    }}
+      }}
     >
-        {isActive ? (
-            <div className="book-cover">
+      {isActive ? (
+        <div className="book-cover">
           <span className="book-label">
             THE READING ROOM
           </span>
@@ -49,9 +57,7 @@ function Book({
         </h2>
       )}
     </motion.article>
-    
   );
 }
 
 export default Book;
-
