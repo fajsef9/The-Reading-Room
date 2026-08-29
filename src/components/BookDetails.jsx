@@ -28,7 +28,8 @@ function BookDetails({ book, onBack }) {
 
           {/* PAGES */}
           <div className="details-pages"></div>
-
+            {/* SPINE */}
+            <div className="details-spine"></div>
           {/* COVER */}
           <div
             className="details-cover"
