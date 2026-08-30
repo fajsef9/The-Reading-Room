@@ -33,19 +33,15 @@ body {
 
 .library-header h1 {
   margin: 0;
-
   font-family: "Playfair Display", serif;
-
   font-size: clamp(2rem, 3vw, 3.4rem);
   font-weight: 400;
-
   letter-spacing: -0.03em;
 }
 
 .header-line {
   width: 100px;
   height: 1px;
-
   background: rgba(232, 230, 225, 0.3);
 }
 
@@ -55,35 +51,24 @@ body {
 
 .bookshelf-window {
   width: 100%;
-
   overflow: hidden;
-
   padding: 45px 0 60px;
-
   cursor: grab;
 }
 
 .bookshelf {
   display: flex;
-
   align-items: flex-end;
-
   gap: 28px;
-
   width: max-content;
 }
 
 .book {
   position: relative;
-
   flex-shrink: 0;
-
   height: 430px;
-
   overflow: hidden;
-
   cursor: pointer;
-
   user-select: none;
 
   box-shadow:
@@ -94,9 +79,7 @@ body {
   position: relative;
 
   display: flex;
-
   flex-direction: column;
-
   justify-content: space-between;
 
   width: 310px;
@@ -109,7 +92,6 @@ body {
   content: "";
 
   position: absolute;
-
   inset: 0;
 
   pointer-events: none;
@@ -127,11 +109,9 @@ body {
 
 .book-label {
   position: relative;
-
   z-index: 1;
 
   font-size: 0.62rem;
-
   letter-spacing: 0.15em;
 
   opacity: 0.65;
@@ -139,7 +119,6 @@ body {
 
 .book-info {
   position: relative;
-
   z-index: 1;
 }
 
@@ -149,7 +128,6 @@ body {
   font-family: "Playfair Display", serif;
 
   font-size: 3rem;
-
   font-weight: 400;
 
   line-height: 0.95;
@@ -165,15 +143,12 @@ body {
 
 .book-footer {
   position: relative;
-
   z-index: 1;
 
   display: flex;
-
   justify-content: space-between;
 
   font-size: 0.58rem;
-
   letter-spacing: 0.1em;
 
   opacity: 0.55;
@@ -185,13 +160,11 @@ body {
   padding-top: 28px;
 
   font-size: 1.15rem;
-
   font-weight: 500;
 
   line-height: 1;
 
   writing-mode: vertical-rl;
-
   text-orientation: mixed;
 
   white-space: nowrap;
@@ -203,7 +176,6 @@ body {
   text-align: center;
 
   font-size: 0.65rem;
-
   letter-spacing: 0.18em;
 
   opacity: 0.4;
@@ -215,19 +187,16 @@ body {
 
 .book-details {
   min-height: 100vh;
-
   padding: 60px 8vw;
 }
 
 .book-details button {
   border: none;
-
   background: none;
 
   color: inherit;
 
   font-family: "DM Mono", monospace;
-
   font-size: 0.7rem;
 
   letter-spacing: 0.1em;
@@ -238,186 +207,45 @@ body {
 .details-content {
   display: grid;
 
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 750px 1fr;
 
-  gap: 100px;
+  gap: 70px;
 
   align-items: center;
 
-  max-width: 1100px;
+  width: 100%;
+  max-width: 1400px;
 
-  margin: 80px auto 0;
+  margin: 50px auto 0;
 }
 
 /* =========================
-   DETAILS BOOK
+   3D BOOK MODEL
    ========================= */
 
 .details-book {
   position: relative;
 
-  width: 330px;
-  height: 450px;
-
-  perspective: 1000px;
-
-  transform-style: preserve-3d;
-
-  transform:
-    rotateY(-12deg)
-    rotateX(2deg);
-
-  filter:
-    drop-shadow(
-      20px 25px 30px rgba(0, 0, 0, 0.35)
-    );
-}
-
-/* =========================
-   DETAILS PAGE BLOCK
-   ========================= */
-
-.details-pages {
-  position: absolute;
-
-  left: 10px;
-  top: 8px;
-
-  width: 310px;
-  height: 430px;
-
-  background: #e8e3dc;
-
-  transform: translateZ(-8px);
-
-  box-shadow:
-    5px 5px 0 #d8d3cb,
-    9px 9px 0 #ccc6be;
-
-  z-index: 0;
-}
-
-/* =========================
-   DETAILS BOOK SPINE
-   ========================= */
-
-.details-spine {
-  position: absolute;
-
-  left: 0;
-  top: 0;
-
-  width: 14px;
-  height: 430px;
-
-  background:
-    linear-gradient(
-      to right,
-      rgba(0, 0, 0, 0.3),
-      rgba(255, 255, 255, 0.08),
-      rgba(0, 0, 0, 0.3)
-    );
-
-  transform: translateZ(2px);
-
-  z-index: 2;
-
-  box-shadow:
-    2px 0 8px rgba(0, 0, 0, 0.25);
-}
-
-/* =========================
-   DETAILS COVER
-   ========================= */
-
-.details-cover {
-  position: relative;
-
-  z-index: 1;
+  width: 750px;
+  height: 650px;
 
   display: flex;
-
-  flex-direction: column;
-
+  align-items: center;
   justify-content: center;
 
-  width: 310px;
-  height: 430px;
-
-  padding: 40px;
-
-  transform-style: preserve-3d;
-
-  box-shadow:
-    inset -8px 0 12px rgba(0, 0, 0, 0.12);
+  overflow: visible;
 }
 
-/* =========================
-   DETAILS COVER EDGE
-   ========================= */
-
-.details-book::before {
-  content: "";
-
-  position: absolute;
-
-  top: 5px;
-  right: 5px;
-
-  width: 12px;
-  height: 430px;
-
-  background: rgba(0, 0, 0, 0.25);
-
-  transform:
-    rotateY(90deg)
-    translateZ(6px);
-
-  transform-origin: left center;
+.book-model {
+  width: 500px;
+  height: 500px;
+  overflow: visible;
 }
 
-/* =========================
-   DETAILS BOOK BOTTOM
-   ========================= */
-
-.details-book::after {
-  content: "";
-
-  position: absolute;
-
-  bottom: 5px;
-  left: 5px;
-
-  width: 310px;
-  height: 10px;
-
-  background: rgba(0, 0, 0, 0.18);
-
-  transform: translateZ(-4px);
-}
-
-/* =========================
-   DETAILS COVER TEXT
-   ========================= */
-
-.details-cover h1 {
-  margin: 25px 0 12px;
-
-  font-family: "Playfair Display", serif;
-
-  font-size: 3rem;
-
-  font-weight: 400;
-
-  line-height: 0.95;
-}
-
-.details-cover p {
-  margin: 0;
-
-  font-size: 0.75rem;
-
-  opacity: 0.6;
+.book-model canvas {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
 }
 
 /* =========================
@@ -444,6 +272,8 @@ body {
   font-size: 4rem;
 
   font-weight: 400;
+
+  line-height: 1;
 }
 
 .details-info > p {
@@ -476,7 +306,6 @@ body {
   display: flex;
 
   align-items: center;
-
   justify-content: center;
 
   background: #17181d;
@@ -485,7 +314,7 @@ body {
 }
 
 /* =========================
-   3D BOOK
+   3D BOOK OPENING
    ========================= */
 
 .book-3d {
@@ -549,7 +378,7 @@ body {
 }
 
 /* =========================
-   FAKE PAGE EDGES
+   PAGE EDGES
    ========================= */
 
 .page-block::before {
@@ -667,7 +496,7 @@ body {
 }
 
 /* =========================
-   FRONT COVER CONTAINER
+   FRONT COVER
    ========================= */
 
 .front-cover {
@@ -711,7 +540,7 @@ body {
 }
 
 /* =========================
-   COVER THICKNESS
+   COVER EDGE
    ========================= */
 
 .cover-edge {
@@ -823,6 +652,25 @@ body {
   .book-3d {
     width: 90vw;
     height: 62vw;
+  }
+
+  .details-content {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .details-book {
+    width: 90vw;
+    height: 450px;
+  }
+
+  .book-model {
+    width: 90vw;
+    height: 450px;
+  }
+
+  .details-info h1 {
+    font-size: 3rem;
   }
 
   .front-cover,

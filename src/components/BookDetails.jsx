@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import BookModel from "./BookModel";
 
 function BookDetails({ book, onBack }) {
   return (
@@ -23,30 +24,9 @@ function BookDetails({ book, onBack }) {
 
       <div className="details-content">
 
-        {/* BOOK MODEL */}
+        {/* SPLINE BOOK */}
         <div className="details-book">
-
-          {/* PAGES */}
-          <div className="details-pages"></div>
-            {/* SPINE */}
-            <div className="details-spine"></div>
-          {/* COVER */}
-          <div
-            className="details-cover"
-            style={{
-              backgroundColor: book.color,
-              color: book.textColor,
-            }}
-          >
-            <span className="details-label">
-              THE READING ROOM
-            </span>
-
-            <h1>{book.title}</h1>
-
-            <p>{book.author}</p>
-          </div>
-
+          <BookModel />
         </div>
 
         {/* BOOK INFORMATION */}

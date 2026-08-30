@@ -4,7 +4,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import "./App.css";
 
 import Book from "./components/Book";
-import BookDetails from "./components/BookDetails";
+import BookDetails from "./Components/BookDetails";
 import Opening from "./components/Opening";
 
 const books = [
