@@ -8,6 +8,12 @@ import BookDetails from "./Components/BookDetails";
 import Opening from "./components/Opening";
 import books from "./data/books";
 
+import {
+  FaInstagram,
+  FaLinkedinIn,
+  FaGithub,
+} from "react-icons/fa";
+
 const SPINE_WIDTH = 75;
 const OPEN_BOOK_WIDTH = 310;
 const BOOK_GAP = 28;
@@ -115,6 +121,34 @@ function App() {
             <p className="scroll-hint">
               SCROLL TO EXPLORE
             </p>
+            <div className="social-links">
+            <a
+              href="https://www.instagram.com/rohan.kb9/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram"
+            >
+              <FaInstagram />
+            </a>
+
+            <a
+              href="https://www.linkedin.com/in/rohankumar-balachandar-93a850347/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn"
+            >
+              <FaLinkedinIn />
+            </a>
+
+            <a
+              href="https://github.com/fajsef9"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub"
+            >
+              <FaGithub />
+            </a>
+          </div>
           </motion.div>
         )}
 
