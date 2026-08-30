@@ -24,12 +24,10 @@ function BookDetails({ book, onBack }) {
 
       <div className="details-content">
 
-        {/* SPLINE BOOK */}
         <div className="details-book">
-          <BookModel />
+          <BookModel book={book} />
         </div>
 
-        {/* BOOK INFORMATION */}
         <div className="details-info">
           <span className="details-label">
             PERSONAL COLLECTION
@@ -37,9 +35,7 @@ function BookDetails({ book, onBack }) {
 
           <h1>{book.title}</h1>
 
-          <p>
-            A book from my personal reading collection.
-          </p>
+          <p>{book.author}</p>
 
           <div className="rating">
             ★ ★ ★ ★ ★

@@ -1,16 +1,34 @@
+import { useEffect } from "react";
 import { Canvas } from "@react-three/fiber";
-import { OrbitControls, useGLTF } from "@react-three/drei";
+import {
+  Bounds,
+  Center,
+  OrbitControls,
+  useGLTF,
+} from "@react-three/drei";
 
-function BookScene() {
+function BookScene({ book }) {
   const { scene } = useGLTF("/models/book.glb");
+
+  useEffect(() => {
+    scene.traverse((child) => {
+      if (
+        child.isMesh &&
+        child.material &&
+        child.material.name === "BaseColor"
+      ) {
+        child.material.color.set(book.color);
+      }
+    });
+  }, [scene, book]);
 
   return (
     <>
-      <primitive
-        object={scene}
-        scale={1}
-        position={[0, 0, 0]}
-      />
+      <Bounds fit clip observe margin={1.4}>
+        <Center>
+          <primitive object={scene} scale={1} />
+        </Center>
+      </Bounds>
 
       <ambientLight intensity={1.5} />
 
@@ -19,29 +37,25 @@ function BookScene() {
         intensity={2}
       />
 
+      <directionalLight
+        position={[0, -5, 3]}
+        intensity={1}
+      />
+
       <OrbitControls
         enableZoom={false}
         enablePan={false}
         autoRotate={false}
-        minAzimuthAngle={-0.8}
-        maxAzimuthAngle={0.8}
-        minPolarAngle={Math.PI / 2 - 0.3}
-        maxPolarAngle={Math.PI / 2 + 0.3}
       />
     </>
   );
 }
 
-function BookModel() {
+function BookModel({ book }) {
   return (
     <div className="book-model">
-      <Canvas
-        camera={{
-          position: [0, 0, 9],
-          fov: 40,
-        }}
-      >
-        <BookScene />
+      <Canvas camera={{ fov: 40 }}>
+        <BookScene book={book} />
       </Canvas>
     </div>
   );
