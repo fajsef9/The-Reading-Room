@@ -4,6 +4,7 @@ import {
   Bounds,
   Center,
   OrbitControls,
+  Text,
   useGLTF,
 } from "@react-three/drei";
 
@@ -26,9 +27,62 @@ function BookScene({ book }) {
     <>
       <Bounds fit clip observe margin={1.4}>
         <Center>
-          <primitive object={scene} scale={1} />
+          <group>
+            {/* BOOK MODEL */}
+            <primitive object={scene} scale={1} />
+
+            {/* =========================
+                FRONT COVER TITLE
+            ========================= */}
+
+            <Text
+              position={[0, -0.295, 0.7]}
+              rotation={[Math.PI / 2, 0, 0]}
+              fontSize={0.32}
+              color={book.textColor}
+              anchorX="center"
+              anchorY="middle"
+              maxWidth={2.4}
+            >
+              {book.title}
+            </Text>
+
+            {/* =========================
+                FRONT COVER AUTHOR
+            ========================= */}
+
+            <Text
+              position={[0, -0.295, 0.35]}
+              rotation={[Math.PI / 2, 0, 0]}
+              fontSize={0.14}
+              color={book.textColor}
+              anchorX="center"
+              anchorY="middle"
+              maxWidth={2.2}
+            >
+              {book.author}
+            </Text>
+
+            {/* =========================
+                SPINE TITLE
+            ========================= */}
+
+            <Text
+              position={[-1.505, -0.295, 0]}
+              rotation={[Math.PI / 2, 0, Math.PI / 2]}
+              fontSize={0.16}
+              color={book.textColor}
+              anchorX="center"
+              anchorY="middle"
+              maxWidth={3.5}
+            >
+              {book.title}
+            </Text>
+          </group>
         </Center>
       </Bounds>
+
+      {/* LIGHTING */}
 
       <ambientLight intensity={1.5} />
 
