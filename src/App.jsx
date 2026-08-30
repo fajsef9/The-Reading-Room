@@ -9,40 +9,101 @@ import Opening from "./components/Opening";
 
 const books = [
   {
-    title: "Grid Systems",
-    author: "Josef Müller-Brockmann",
-    color: "#A6543D",
+    title: "The 48 Laws of Power",
+    author: "Robert Greene",
+    color: "#3A3A3A",
     textColor: "#F4EEE8",
   },
+
   {
-    title: "Kindle Entrepreneur",
-    author: "Unknown",
-    color: "#D8D8D8",
+    title: "Visionary Thinking",
+    author: "Ashish Jaiswal",
+    color: "#C9B79C",
     textColor: "#17181D",
   },
+
   {
-    title: "Steve Jobs",
-    author: "Walter Isaacson",
-    color: "#25262A",
-    textColor: "#EAEAEA",
+    title: "Ikigai",
+    author: "Héctor García & Francesc Miralles",
+    color: "#7E9B82",
+    textColor: "#F4EEE8",
   },
+
   {
-    title: "Apple Book",
-    author: "Apple",
-    color: "#D9D9D9",
+    title: "Atomic Habits",
+    author: "James Clear",
+    color: "#E8DCC8",
     textColor: "#17181D",
   },
+
   {
-    title: "Principles of UX",
-    author: "Design Collection",
-    color: "#202024",
-    textColor: "#EAEAEA",
+    title: "The Art of War",
+    author: "Sun Tzu",
+    color: "#5A5148",
+    textColor: "#F4EEE8",
   },
+
   {
-    title: "How To",
-    author: "Michael Bierut",
-    color: "#D9D9D9",
+    title: "Rich Dad Poor Dad",
+    author: "Robert T. Kiyosaki",
+    color: "#315C69",
+    textColor: "#F4EEE8",
+  },
+
+  {
+    title: "Meditations",
+    author: "Marcus Aurelius",
+    color: "#77746C",
+    textColor: "#F4EEE8",
+  },
+
+  {
+    title: "The Obstacle Is the Way",
+    author: "Ryan Holiday",
+    color: "#4D5B52",
+    textColor: "#F4EEE8",
+  },
+
+  {
+    title: "Shadow and Bone",
+    author: "Leigh Bardugo",
+    color: "#3E4A69",
+    textColor: "#F4EEE8",
+  },
+
+  {
+    title: "Better Than the Movies",
+    author: "Lynn Painter",
+    color: "#D98C91",
     textColor: "#17181D",
+  },
+
+  {
+    title: "Dark Matter",
+    author: "Blake Crouch",
+    color: "#25252B",
+    textColor: "#F4EEE8",
+  },
+
+  {
+    title: "Hidden Pictures",
+    author: "Jason Rekulak",
+    color: "#B7A98F",
+    textColor: "#17181D",
+  },
+
+  {
+    title: "1984",
+    author: "George Orwell",
+    color: "#6B3030",
+    textColor: "#F4EEE8",
+  },
+
+  {
+    title: "Animal Farm",
+    author: "George Orwell",
+    color: "#52664A",
+    textColor: "#F4EEE8",
   },
 ];
 

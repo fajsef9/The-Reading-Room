@@ -39,16 +39,42 @@ function BookScene({ book }) {
 
 
             {/* =========================
+                COVER LABEL
+                THE READING ROOM
+            ========================= */}
+
+            <Text
+              position={[-1.05, -0.12, 0.43]}
+              font="/fonts/DMMono-Regular.ttf"
+              fontSize={0.09}
+              color={book.textColor}
+              anchorX="left"
+              anchorY="middle"
+              letterSpacing={0.08}
+            >
+              THE READING ROOM
+            </Text>
+
+
+            {/* =========================
                 FRONT COVER TITLE
             ========================= */}
 
             <Text
-              position={[0, -0.295, 0.43]}
-              fontSize={0.32}
+              position={[-1.05, -0.42, 0.43]}
+              font="/fonts/PlayfairDisplay-Regular.ttf"
+              fontSize={
+                book.title.length > 20
+                  ? 0.22
+                  : book.title.length > 15
+                    ? 0.28
+                    : 0.38
+              }
               color={book.textColor}
-              anchorX="center"
+              anchorX="left"
               anchorY="middle"
-              maxWidth={2.4}
+              maxWidth={2.35}
+              lineHeight={0.85}
             >
               {book.title}
             </Text>
@@ -59,14 +85,43 @@ function BookScene({ book }) {
             ========================= */}
 
             <Text
-              position={[0, -0.6, 0.43]}
-              fontSize={0.14}
+              position={[-1.05, -0.75, 0.43]}
+              font="/fonts/DMMono-Regular.ttf"
+              fontSize={0.10}
               color={book.textColor}
-              anchorX="center"
+              anchorX="left"
               anchorY="middle"
-              maxWidth={2.2}
             >
               {book.author}
+            </Text>
+
+
+            {/* =========================
+                COVER FOOTER
+            ========================= */}
+
+            <Text
+              position={[-1.05, -1.75, 0.43]}
+              font="/fonts/DMMono-Regular.ttf"
+              fontSize={0.065}
+              color={book.textColor}
+              anchorX="left"
+              anchorY="middle"
+              letterSpacing={0.05}
+            >
+              PERSONAL EDITION
+            </Text>
+
+
+            <Text
+              position={[0.95, -1.75, 0.43]}
+              font="/fonts/DMMono-Regular.ttf"
+              fontSize={0.065}
+              color={book.textColor}
+              anchorX="right"
+              anchorY="middle"
+            >
+              2026
             </Text>
 
 
@@ -77,6 +132,7 @@ function BookScene({ book }) {
             <Text
               position={[-1.72, -0.295, 0]}
               rotation={[0, -Math.PI / 2, -Math.PI / 2]}
+              font="/fonts/DMMono-Regular.ttf"
               fontSize={0.16}
               color={book.textColor}
               anchorX="center"
