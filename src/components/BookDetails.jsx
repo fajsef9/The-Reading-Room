@@ -38,13 +38,14 @@ function BookDetails({ book, onBack }) {
           <p>{book.author}</p>
 
           <div className="rating">
-            ★ ★ ★ ★ ★
+            {"★".repeat(Math.floor(book.rating))}
+            {book.rating % 1 !== 0 ? "½" : ""}
           </div>
 
+          <p className="quote">"{book.quote}"</p>
+
           <p className="review">
-            This is where the book description, my thoughts,
-            favourite quotes, and other information about the
-            book will eventually go.
+            {book.description}
           </p>
         </div>
 

@@ -139,7 +139,10 @@ function BookScene({ book }) {
               position={[-1.72, -0.295, 0]}
               rotation={[0, -Math.PI / 2, -Math.PI / 2]}
               font="/fonts/PlayfairDisplay-Regular.ttf"
-              fontSize={0.16}
+              fontSize={
+                book.title.length > 5 
+                ? 0.16
+                : 0.3}
               color={book.textColor}
               anchorX="center"
               anchorY="middle"
