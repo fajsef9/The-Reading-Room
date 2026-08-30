@@ -1,5 +1,7 @@
 import { useEffect } from "react";
+
 import { Canvas } from "@react-three/fiber";
+
 import {
   Bounds,
   Center,
@@ -28,16 +30,20 @@ function BookScene({ book }) {
       <Bounds fit clip observe margin={1.4}>
         <Center>
           <group>
-            {/* BOOK MODEL */}
+
+            {/* =========================
+                BOOK MODEL
+            ========================= */}
+
             <primitive object={scene} scale={1} />
+
 
             {/* =========================
                 FRONT COVER TITLE
             ========================= */}
 
             <Text
-              position={[0, -0.295, 0.7]}
-              rotation={[Math.PI / 2, 0, 0]}
+              position={[0, -0.295, 0.43]}
               fontSize={0.32}
               color={book.textColor}
               anchorX="center"
@@ -47,13 +53,13 @@ function BookScene({ book }) {
               {book.title}
             </Text>
 
+
             {/* =========================
                 FRONT COVER AUTHOR
             ========================= */}
 
             <Text
-              position={[0, -0.295, 0.35]}
-              rotation={[Math.PI / 2, 0, 0]}
+              position={[0, -0.6, 0.43]}
               fontSize={0.14}
               color={book.textColor}
               anchorX="center"
@@ -63,13 +69,14 @@ function BookScene({ book }) {
               {book.author}
             </Text>
 
+
             {/* =========================
                 SPINE TITLE
             ========================= */}
 
             <Text
-              position={[-1.505, -0.295, 0]}
-              rotation={[Math.PI / 2, 0, Math.PI / 2]}
+              position={[-1.72, -0.295, 0]}
+              rotation={[0, -Math.PI / 2, -Math.PI / 2]}
               fontSize={0.16}
               color={book.textColor}
               anchorX="center"
@@ -78,11 +85,15 @@ function BookScene({ book }) {
             >
               {book.title}
             </Text>
+
           </group>
         </Center>
       </Bounds>
 
-      {/* LIGHTING */}
+
+      {/* =========================
+          LIGHTING
+      ========================= */}
 
       <ambientLight intensity={1.5} />
 
@@ -96,6 +107,11 @@ function BookScene({ book }) {
         intensity={1}
       />
 
+
+      {/* =========================
+          BOOK CONTROLS
+      ========================= */}
+
       <OrbitControls
         enableZoom={false}
         enablePan={false}
@@ -104,6 +120,7 @@ function BookScene({ book }) {
     </>
   );
 }
+
 
 function BookModel({ book }) {
   return (
@@ -114,6 +131,7 @@ function BookModel({ book }) {
     </div>
   );
 }
+
 
 useGLTF.preload("/models/book.glb");
 
