@@ -44,9 +44,9 @@ function BookScene({ book }) {
             ========================= */}
 
             <Text
-              position={[-1.05, -0.12, 0.43]}
+              position={[-1.1, 1.9, 0.43]}
               font="/fonts/DMMono-Regular.ttf"
-              fontSize={0.09}
+              fontSize={0.105}
               color={book.textColor}
               anchorX="left"
               anchorY="middle"
@@ -61,14 +61,20 @@ function BookScene({ book }) {
             ========================= */}
 
             <Text
-              position={[-1.05, -0.42, 0.43]}
+              position={
+                book.title.length > 20
+                  ? [-1.1, 0.1, 0.43]
+                  : book.title.length > 13
+                    ? [-1.1, 0, 0.43]
+                    : [-1.1, -0.1, 0.43]
+                }
               font="/fonts/PlayfairDisplay-Regular.ttf"
               fontSize={
-                book.title.length > 20
-                  ? 0.22
-                  : book.title.length > 15
-                    ? 0.28
-                    : 0.38
+                book.title.length > 30
+                  ? 0.4
+                  : book.title.length > 13
+                    ? 0.5 //works
+                    : 0.6 //works
               }
               color={book.textColor}
               anchorX="left"
@@ -132,7 +138,7 @@ function BookScene({ book }) {
             <Text
               position={[-1.72, -0.295, 0]}
               rotation={[0, -Math.PI / 2, -Math.PI / 2]}
-              font="/fonts/DMMono-Regular.ttf"
+              font="/fonts/PlayfairDisplay-Regular.ttf"
               fontSize={0.16}
               color={book.textColor}
               anchorX="center"
